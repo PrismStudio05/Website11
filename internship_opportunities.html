@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Internship Opportunities</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -229,6 +233,125 @@
 
   </div>
 </section>
+
+<!-- FAQ STARTING -->
+ <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f9;
+    }
+
+    #faq {
+      background-color: #f5f7fa;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    #faq h2 {
+      text-align: center;
+      color: #1a2639;
+      margin-bottom: 30px;
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      margin-bottom: 15px;
+      padding: 16px 20px;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .faq-question {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #1a2639;
+      margin: 0;
+      position: relative;
+    }
+
+    .faq-question::after {
+      content: "⌄";
+      float: right;
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(180deg);
+    }
+
+    .answer {
+      display: none;
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<!-- FAQ SECTION -->
+<section id="faq">
+  <h2>FAQ</h2>
+
+  <div class="faq-item">
+    <h3 class="faq-question">Is it really free?</h3>
+    <div class="answer">
+      <p>Yes! 100% free, no hidden charges. We're MSME certified and support open learning.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question">Who can apply?</h3>
+    <div class="answer">
+      <p>Any student or fresher looking to gain practical experience.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question">Do I get a certificate?</h3>
+    <div class="answer">
+      <p>Yes, on successful completion of your internship and project review, a certificate is issued.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question">Is it remote or offline?</h3>
+    <div class="answer">
+      <p>Mostly remote! But we also host some hybrid stuff depending on project needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JS: FAQ TOGGLE LOGIC -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const answer = question.nextElementSibling;
+        const isOpen = answer.style.display === 'block';
+
+        answer.style.display = isOpen ? 'none' : 'block';
+        item.classList.toggle('active', !isOpen);
+      });
+    });
+  });
+</script>
+
+
+
+
   <footer>
 <footer style="background: linear-gradient(to right, #d43082, #1a2639); color: #dce3ec; padding: 60px 30px 25px; font-family: 'Segoe UI', sans-serif;">
   <div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto; gap: 40px;">
