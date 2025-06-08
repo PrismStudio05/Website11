@@ -61,3 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+const heading = document.querySelector('.glow');
+
+setInterval(() => {
+  heading.classList.toggle('glow');
+}, 2); // blinks every second
