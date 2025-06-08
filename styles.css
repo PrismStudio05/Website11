@@ -387,3 +387,32 @@ button:hover {
   align-items: center;
   margin-bottom: 1rem;
 }
+
+.answer {
+  display: none;
+  padding: 0.5rem 0;
+  color: #444;
+}
+
+.faq-question {
+  cursor: pointer;
+  position: relative;
+  padding: 0.5rem 0;
+  font-weight: bold;
+}
+
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  font-weight: bold;
+}
+
+.faq-item.active .faq-question::after {
+  content: "-";
+}
+
+.faq-item.active .answer {
+  display: block;
+}
+
