@@ -48,16 +48,10 @@ cards.forEach(card => {
 
 // ✅ --- FAQ Toggle Section ---
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-      question.classList.toggle('active');
-      const answer = question.nextElementSibling;
-
-      if (answer.style.display === 'block') {
-        answer.style.display = 'none';
-      } else {
-        answer.style.display = 'block';
-      }
+  document.querySelectorAll(".faq-question").forEach((question) => {
+    question.addEventListener("click", () => {
+      const faqItem = question.parentElement;
+      faqItem.classList.toggle("active");
     });
   });
 });
@@ -67,3 +61,6 @@ const heading = document.querySelector('.glow');
 setInterval(() => {
   heading.classList.toggle('glow');
 }, 2); // blinks every second
+
+
+
