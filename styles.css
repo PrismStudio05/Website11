@@ -194,34 +194,34 @@ section ul li {
 }
 
 /* FAQ Section */
-.faq-item {
-  margin-bottom: 1.5rem;
-}
-.faq-question {
-  font-weight: 700;
-  color: #015f8a;
-  margin-bottom: 0.4rem;
+/* .faq-question {
   cursor: pointer;
   position: relative;
-  user-select: none;
+  padding-right: 25px;
 }
+
 .faq-question::after {
-  content: '+';
+  content: "+";
   position: absolute;
   right: 0;
-  font-size: 1.2rem;
   font-weight: bold;
-  transition: transform 0.3s ease;
+  transition: 0.3s ease;
 }
-.faq-question.active::after {
-  content: '-';
+
+.faq-item.active .faq-question::after {
+  content: "-";
 }
+
 .answer {
   display: none;
-  padding-left: 1rem;
+  padding-top: 8px;
   color: #444;
-  transition: all 0.3s ease;
 }
+
+.faq-item.active .answer {
+  display: block;
+} */
+
 
 /* Contact Form */
 form {
@@ -387,32 +387,11 @@ button:hover {
   align-items: center;
   margin-bottom: 1rem;
 }
-
-.answer {
-  display: none;
-  padding: 0.5rem 0;
-  color: #444;
-}
-
-.faq-question {
-  cursor: pointer;
-  position: relative;
-  padding: 0.5rem 0;
-  font-weight: bold;
-}
-
-.faq-question::after {
-  content: "+";
-  position: absolute;
-  right: 0;
-  font-weight: bold;
-}
-
-.faq-item.active .faq-question::after {
-  content: "-";
-}
-
-.faq-item.active .answer {
-  display: block;
-}
-
+<style>
+  .internship-section {
+    padding-top: 20px; /* reduce top padding */
+    padding-bottom: 20px; /* reduce bottom padding */
+    margin-top: 0; /* ensure no margin above */
+    margin-bottom: 0; /* ensure no margin below */
+  }
+</style>
