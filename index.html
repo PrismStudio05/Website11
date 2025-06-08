@@ -139,8 +139,17 @@ Committed to excellence, innovation, and client success, PrismStudio is your tru
    -->
 
  <!-- HTML --></section>
-   <section id="internship-section"></section>
-<section class="internship-section">
+  <style>
+  .internship-section {
+    padding-top: 20px; /* reduce top padding */
+    padding-bottom: 20px; /* reduce bottom padding */
+    margin-top: 0; /* ensure no margin above */
+    margin-bottom: 0; /* ensure no margin below */
+  }
+</style>
+
+  
+  <section id="internship-section" class="internship-section">
   <div class="card web-dev">
     <h2>🌐 Web Development</h2>
     <p>Master web technologies and build modern web applications.</p>
@@ -193,9 +202,76 @@ Committed to excellence, innovation, and client success, PrismStudio is your tru
 <div style="text-align:center; margin-top: 20px;">
   <a href="internship_opportunities.html" class="view-all-btn" style="text-decoration: none; background-color: #007bb6; color: white; padding: 12px 24px; font-weight: 600; border-radius: 8px; font-family: 'Segoe UI', sans-serif; font-size: 1rem;">View All Internships</a>
 </div>
+</section>
 
+<!-- FAQ STARTING -->
+ <!-- <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f9;
+    }
 
-  <section id="faq">
+    #faq {
+      background-color: #f5f7fa;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    #faq h2 {
+      text-align: center;
+      color: #1a2639;
+      margin-bottom: 30px;
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      margin-bottom: 15px;
+      padding: 16px 20px;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .faq-question {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #1a2639;
+      margin: 0;
+      position: relative;
+    }
+
+    .faq-question::after {
+      content: "⌄";
+      float: right;
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(180deg);
+    }
+
+    .answer {
+      display: none;
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<!-- FAQ SECTION -->
+<!-- <section id="faq">
   <h2>FAQ</h2>
 
   <div class="faq-item">
@@ -212,8 +288,40 @@ Committed to excellence, innovation, and client success, PrismStudio is your tru
     </div>
   </div>
 
-  <!-- Add more FAQ items below as needed -->
-</section>
+  <div class="faq-item">
+    <h3 class="faq-question">Do I get a certificate?</h3>
+    <div class="answer">
+      <p>Yes, on successful completion of your internship and project review, a certificate is issued.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question">Is it remote or offline?</h3>
+    <div class="answer">
+      <p>Mostly remote! But we also host some hybrid stuff depending on project needs.</p>
+    </div>
+  </div>
+</section> -->
+
+<!-- JS: FAQ TOGGLE LOGIC -->
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const answer = question.nextElementSibling;
+        const isOpen = answer.style.display === 'block';
+
+        answer.style.display = isOpen ? 'none' : 'block';
+        item.classList.toggle('active', !isOpen);
+      });
+    });
+  });
+</script>
+
+ --> -->
+
+ 
 <section id="contact">
   <h2>Contact Us</h2>
   <form id="contact-form">
@@ -331,6 +439,16 @@ Committed to excellence, innovation, and client success, PrismStudio is your tru
 
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js"><script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        faqItem.classList.toggle('active');
+      });
+    });
+  });
+</script>
+</script>
 </body>
 </html>
