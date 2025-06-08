@@ -340,11 +340,11 @@ button:hover {
   /*background-color: #111;*/
   padding: 10px 20px;
   border-radius: 10px;
-  transition: all 0.3s ease-in-out;
+  transition: all 1.0s ease-in-out;
 }
 
 .glow-hover:hover {
- /* color: rgb(33, 42, 42);
+ /*color: rgb(33, 42, 42);
    box-shadow:
     0 0 10px rgb(13, 14, 14),
     0 0 20px rgb(14, 14, 14),
@@ -354,7 +354,7 @@ button:hover {
     0 0 5px rgb(42, 22, 200),
     0 0 10px rgb(121, 9, 9);
   cursor: pointer; */
-  transform: scale(1.005); 
+  transform: scale(1.055); 
 }
 
 
