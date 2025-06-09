@@ -126,50 +126,49 @@
     window.onerror = (msg, url, line, col, error) => {
   alert("🔥 JS error: " + msg);
 };
+document.addEventListener('DOMContentLoaded', () => {
+  const supabaseUrl = 'https://hriognbjxmfgnwszjwbs.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyaW9nbmJqeG1mZ253c3pqd2JzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0MDUwMjcsImV4cCI6MjA2NDk4MTAyN30._B5wb2Mow8DDFv9TjC2wz1-oYgRYLD2bguh3REXdRzg';
+  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const supabaseUrl = 'https://hriognbjxmfgnwszjwbs.supabase.co';
-      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyaW9nbmJqeG1mZ253c3pqd2JzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0MDUwMjcsImV4cCI6MjA2NDk4MTAyN30._B5wb2Mow8DDFv9TjC2wz1-oYgRYLD2bguh3REXdRzg';
-      const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  const form = document.getElementById('applyForm');
+  const msgBox = document.getElementById('formMessage');
 
-      const form = document.getElementById('applyForm');
-      const msgBox = document.getElementById('formMessage');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msgBox.textContent = '';
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        msgBox.textContent = '';
+    const contact = form.contact_number.value.trim();
 
-        const contact = form.contact_number.value.trim();
+    if (contact.length < 10 || contact.length > 11) {
+      msgBox.innerHTML = `<p class="error">⚠️ Contact number must be between 10–11 digits</p>`;
+      return;
+    }
 
-        if (contact.length < 10 || contact.length > 11) {
-          msgBox.innerHTML = `<p class="error">⚠️ Contact number must be between 10–11 digits</p>`;
-          return;
-        }
+    const data = {
+      full_name: form.full_name.value,
+      email: form.email.value,
+      contact_number: parseInt(contact),
+      college_university_name: form.college_university_name.value,
+      branch: form.branch.value,
+      domain: form.domain.value,
+      internship_duration: form.internship_duration.value,
+      referral_code: form.referral_code.value || null
+    };
 
-        const data = {
-          full_name: form.full_name.value,
-          email: form.email.value,
-          contact_number: parseInt(contact),
-          college_university_name: form.college_university_name.value,
-          branch: form.branch.value,
-          domain: form.domain.value,
-          internship_duration: form.internship_duration.value,
-          referral_code: form.referral_code.value || null
-        };
+    const { error } = await supabaseClient
+      .from('applications')
+      .insert([data]);
 
-        const { error } = await supabase
-          .from('applications')
-          .insert([data]);
-
-        if (error) {
-          msgBox.innerHTML = `<p class="error">❌ Error submitting application</p>`;
-          console.error(error);
-        } else {
-          msgBox.innerHTML = `<p class="success">✅ Application submitted successfully!</p>`;
-          form.reset();
-        }
-      });
-    });
+    if (error) {
+      msgBox.innerHTML = `<p class="error">❌ Error submitting application</p>`;
+      console.error(error);
+    } else {
+      msgBox.innerHTML = `<p class="success">✅ Application submitted successfully!</p>`;
+      form.reset();
+    }
+  });
+});
   </script>
 
 </body>
