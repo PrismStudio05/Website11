@@ -19,23 +19,89 @@ a {
 a:hover {
   color: #0077b6;
 }
-
+ .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #015f8a;
+    }
 /* Navbar */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: white;
-  color: #015f8a;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  opacity: 100%;
+  nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      color: #015f8a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #015f8a;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      font-weight: 600;
+      color: #015f8a;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    nav ul li a.active,
+    nav ul li a:hover {
+      background-color: #d0e7f7;
+      color: #0077b6;
+    }
+    /*-----------------------------------------------------------------------------------------------------------------*/
+    
+    /* Hamburger Icon */
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .menu-toggle::before {
+      content: "\f0c9"; /* FontAwesome hamburger */
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      font-size: 24px;
+      color: #015f8a;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: white;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  }
+
+  nav.active ul {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
 }
+
+/*--------------------------------------------------------------------------------------------------------------------*/
 
 nav .logo {
   font-weight: 700;
@@ -395,3 +461,125 @@ button:hover {
     margin-bottom: 0; /* ensure no margin below */
   }
 </style>
+
+
+
+
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: #1a2639;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block;
+    background: url('menu-icon.png') center center no-repeat;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  nav.active ul {
+    display: flex;
+  }
+}
+
+/* Responsive Grids */
+@media (max-width: 768px) {
+  .grid-3, .grid-4 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    width: 90%;
+    margin: auto;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    padding: 0 15px;
+  }
+
+  header p {
+    font-size: 1rem;
+    padding: 0 15px;
+  }
+
+  .btn, .view-all-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    display: inline-block;
+  }
+}
+
+/* Footer Columns Stack */
+@media (max-width: 768px) {
+  footer > div {
+    flex-direction: column !important;
+    gap: 20px;
+  }
+}
+
+
+.menu-toggle::before {
+  content: "\f0c9"; /* FontAwesome bars */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 24px;
+  color: white;
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #1a2639;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+}
+
+.menu-toggle::before {
+  content: "\f0c9"; /* FontAwesome hamburger */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+/* Mobile nav styles */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    background: white;
+    z-index: 1000;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  #navbar.active ul {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
