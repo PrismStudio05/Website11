@@ -123,6 +123,10 @@
   <!-- Supabase + JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script>
+    window.onerror = (msg, url, line, col, error) => {
+  alert("🔥 JS error: " + msg);
+};
+
     document.addEventListener('DOMContentLoaded', () => {
       const supabaseUrl = 'https://hriognbjxmfgnwszjwbs.supabase.co';
       const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyaW9nbmJqeG1mZ253c3pqd2JzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0MDUwMjcsImV4cCI6MjA2NDk4MTAyN30._B5wb2Mow8DDFv9TjC2wz1-oYgRYLD2bguh3REXdRzg';
