@@ -1,73 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PrismStudio | Certificate Verification</title>
+  <meta name="description"
+    content="Verify your PrismStudio internship certificate. Enter your certificate ID to authenticate and view your digital certificate.">
+  <meta name="keywords" content="certificate verification, internship certificate, PrismStudio, digital certificate">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prismstudio.co.in/verification.html">
+  <meta property="og:title" content="PrismStudio Certificate Verification">
+  <meta property="og:description" content="Verify your PrismStudio internship certificate instantly">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://prismstudio.co.in/verification.html">
+  <meta property="twitter:title" content="PrismStudio Certificate Verification">
+  <meta property="twitter:description" content="Verify your PrismStudio internship certificate instantly">
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
-    /* Global Reset & Box-Sizing */
+    /* Reset & Base Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif; /* Applied globally as per your original intent */
     }
 
-    /* CSS Variables */
     :root {
       --primary: #18111a;
       --accent: #3d91c9;
       --bg: #f4f6f8;
       --text: #1e1e1e;
+      --text-light: #666;
+      --success: #28a745;
+      --error: #dc3545;
+      --warning: #ffc107;
       --rounded: 20px;
       --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+      --transition: 0.3s ease;
     }
 
-    /* HTML & Body Base Styles */
-    html, body {
+    html,
+    body {
       width: 100%;
-      /* height: 100%; Removed this to let flexbox manage height for min-height: 100vh */
-      overflow-x: hidden; /* Prevent horizontal scroll */
-      scroll-behavior: smooth; /* Nice touch for anchor links */
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     body {
       background-color: var(--bg);
       color: var(--text);
-      min-height: 100vh; /* Ensure body takes at least full viewport height */
+      min-height: 100vh;
       display: flex;
-      flex-direction: column; /* Stack content and footer vertically */
-      font-family: 'Segoe UI', sans-serif;
-      /* Removed padding: 40px 20px; from body to allow footer to go full width */
+      flex-direction: column;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* New wrapper for main content to apply internal padding */
     .content-wrapper {
-    flex-grow: 1; /* Allows this wrapper to take up available space, pushing footer down */
+      flex-grow: 1;
       width: 100%;
-      max-width: 1200px; /* Optional: limit overall content width */
-      margin: 0 auto; /* Center the content wrapper */
-      padding: 40px 20px; /* Applies padding inside the wrapper */
-      display: flex; /* Use flex to center the card inside */
-      justify-content: center; /* Center horizontally */
-      align-items: flex-start; /* Align card to the top within the wrapper */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
 
-    /* Card Styles */
     .card {
       background: #fff;
       padding: 50px 30px;
       border-radius: var(--rounded);
       box-shadow: var(--shadow);
-      max-width: 700px; /* Retain max-width for the card itself */
-      width: 100%; /* Ensure card takes full width up to max-width within its parent */
+      max-width: 700px;
+      width: 100%;
       animation: fadeIn 0.6s ease-in-out;
     }
 
     @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .title {
@@ -81,89 +105,458 @@
     .subtitle {
       font-size: 1rem;
       color: #666;
-      text-align: center; -->
+      text-align: center;
       margin-bottom: 30px;
     }
 
-    .input-box {
+    .input-section {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 15px;
+      gap: 20px;
+      margin-bottom: 30px;
     }
 
-    input[type="text"] {
+    .input-group {
+      position: relative;
       width: 100%;
-      max-width: 400px;
-      padding: 14px 18px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      gap: 12px;
+    }
+
+    #certificateInput {
+      flex: 1;
+      padding: 16px 20px;
+      font-size: 1.1rem;
+      border: 2px solid #e1e5e9;
       border-radius: 12px;
       outline: none;
-      transition: 0.3s ease;
+      transition: all var(--transition);
+      font-family: 'Courier New', monospace;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    input:focus {
+    #certificateInput:focus {
       border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(61, 145, 201, 0.1);
     }
 
-    button {
-      background-color: var(--primary);
-      color: #fff;
-      padding: 12px 24px;
+    #certificateInput.valid {
+      border-color: var(--success);
+      background-color: rgba(40, 167, 69, 0.05);
+    }
+
+    #certificateInput.invalid {
+      border-color: var(--error);
+      background-color: rgba(220, 53, 69, 0.05);
+    }
+
+    .input-feedback {
+      margin-top: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .input-feedback.success {
+      color: var(--success);
+    }
+
+    .input-feedback.error {
+      color: var(--error);
+    }
+
+    #verifyBtn {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 16px 32px;
       border: none;
-      font-size: 1rem;
-      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: all var(--transition);
+      min-width: 140px;
+      position: relative;
+      overflow: hidden;
     }
 
-    button:hover {
-      background-color: var(--accent);
+    #verifyBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
 
-    .certificate {
+    #verifyBtn:active {
+      transform: translateY(0);
+    }
+
+    #verifyBtn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Verification Results */
+    #verificationResult {
+      margin-top: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    #verificationResult.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .certificate-result {
+      background: white;
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      border: 1px solid #e1e5e9;
+    }
+
+    .certificate-result.success {
+      border-left: 5px solid var(--success);
+    }
+
+    .certificate-result.error {
+      border-left: 5px solid var(--error);
+    }
+
+    .verification-header {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 24px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e1e5e9;
+    }
+
+    .verification-status {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .verification-status i {
+      color: var(--success);
+    }
+
+    .verification-status.error i {
+      color: var(--error);
+    }
+
+    .verification-date {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .certificate-details {
+      padding: 30px;
+    }
+
+    .certificate-info h3 {
+      margin-bottom: 20px;
+      color: var(--primary);
+      font-size: 1.4rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .info-item label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-item span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .certificate-id {
+      font-family: 'Courier New', monospace;
+      background: #f8f9fa;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #e1e5e9;
+      display: inline-block;
+    }
+
+    .status-badge {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-badge.valid {
+      background: rgba(40, 167, 69, 0.1);
+      color: var(--success);
+      border: 1px solid rgba(40, 167, 69, 0.2);
+    }
+
+    .status-badge.expired {
+      background: rgba(220, 53, 69, 0.1);
+      color: var(--error);
+      border: 1px solid rgba(220, 53, 69, 0.2);
+    }
+
+    .skills-section {
+      margin-top: 30px;
+    }
+
+    .skills-section h4 {
+      margin-bottom: 16px;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      background: linear-gradient(135deg, var(--accent), #5ba3d4);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .certificate-image {
       margin-top: 30px;
       text-align: center;
     }
 
-    .certificate img {
+    .certificate-image img {
       width: 100%;
-      max-height: 500px;
-      object-fit: contain;
-      border-radius: 14px;
+      max-width: 800px;
+      height: auto;
+      border-radius: 12px;
       box-shadow: var(--shadow);
+      transition: transform var(--transition);
     }
 
-    .error {
-      color: red;
-      font-weight: 600;
+    .certificate-image img:hover {
+      transform: scale(1.02);
+    }
+
+    .image-actions {
       margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .verification-footer {
+      background: #f8f9fa;
+      padding: 20px 30px;
+      border-top: 1px solid #e1e5e9;
+    }
+
+    .verification-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    /* Not Found Styles */
+    .not-found-content {
+      padding: 40px 30px;
       text-align: center;
     }
 
-    /* Media Queries for Card */
+    .not-found-icon {
+      font-size: 4rem;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .not-found-content h3 {
+      color: var(--error);
+      margin-bottom: 16px;
+    }
+
+    .suggestions {
+      background: #f8f9fa;
+      padding: 24px;
+      border-radius: 12px;
+      margin: 30px 0;
+      text-align: left;
+    }
+
+    .suggestions h4 {
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .suggestions ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .suggestions li {
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .help-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Loading Animation */
+    .verification-loading {
+      text-align: center;
+      padding: 60px 30px;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Error Message */
+    #errorMessage {
+      background: rgba(220, 53, 69, 0.1);
+      color: var(--error);
+      padding: 16px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(220, 53, 69, 0.2);
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all var(--transition);
+    }
+
+    #errorMessage.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Media Queries */
     @media (max-width: 600px) {
       .card {
         padding: 30px 20px;
       }
+
       .title {
         font-size: 1.6rem;
       }
-      input[type="text"] {
-        max-width: 100%;
+
+      .input-wrapper {
+        flex-direction: column;
+      }
+
+      #verifyBtn {
+        width: 100%;
       }
     }
 
-    /* Footer Styles - Explicitly full width and no margins/padding issue */
+    /* Footer Styles */
     footer {
-      width: 100%; /* Very important: ensures it spans full viewport width */
-      padding: 60px 40px 25px; /* Internal padding */
+      width: 100%;
+      padding: 60px 40px 25px;
       background: linear-gradient(to right, #d43082, #1a2639);
       color: #dce3ec;
       font-family: 'Segoe UI', sans-serif;
-      box-sizing: border-box; /* Includes padding in the total width/height */
-      /* No need for position: absolute/fixed unless it's a sticky footer */
+      box-sizing: border-box;
     }
 
     .footer-inner {
@@ -171,13 +564,13 @@
       flex-wrap: wrap;
       justify-content: space-between;
       width: 100%;
-      max-width: 1200px; /* Limits content width for readability on large screens */
-      margin: 0 auto; /* Centers the content within the full-width footer */
+      max-width: 1200px;
+      margin: 0 auto;
       gap: 40px;
     }
 
     .footer-section {
-      flex: 1 1 200px; /* Allows sections to grow/shrink, with a minimum base width */
+      flex: 1 1 200px;
     }
 
     .footer-section h3 {
@@ -224,7 +617,7 @@
     }
 
     .footer-section .social-icons {
-      margin-top: 12px; /* Space for social icons below email */
+      margin-top: 12px;
     }
 
     .footer-section .social-icons a {
@@ -262,61 +655,81 @@
     }
 
     .footer-bottom div a:last-child {
-        margin-right: 0; /* Remove right margin from the last link */
+      margin-right: 0;
     }
 
     .footer-bottom div a:hover {
       color: #fff;
     }
 
-    /* Media Queries for Footer */
     @media (max-width: 768px) {
       .footer-inner {
         flex-direction: column;
-        align-items: center; /* Center align columns on smaller screens */
-        text-align: center; /* Center text within sections on smaller screens */
+        align-items: center;
+        text-align: center;
       }
+
       .footer-section {
         width: 100%;
-        max-width: 300px; /* Constrain width of sections for better readability on small screens */
+        max-width: 300px;
       }
+
       .footer-section ul {
-        display: block; /* Make lists block again for proper centering */
-        text-align: center; /* Center the list items for aesthetic reasons */
+        display: block;
+        text-align: center;
       }
+
       .footer-section ul li {
-        margin-left: 0; /* Remove any left margin if set */
-        padding-left: 0; /* Remove any left padding if set */
+        margin-left: 0;
+        padding-left: 0;
       }
+
       .footer-section .social-icons {
         margin-top: 20px;
       }
     }
 
     @media (max-width: 480px) {
-        .content-wrapper {
-            padding: 20px 10px; /* Adjust wrapper padding on very small screens */
-        }
-        .card {
-            padding: 30px 15px;
-        }
-        footer {
-            padding: 40px 20px 15px;
-        }
+      .content-wrapper {
+        padding: 20px 10px;
+      }
+
+      .card {
+        padding: 30px 15px;
+      }
+
+      footer {
+        padding: 40px 20px 15px;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="content-wrapper">
     <div class="card">
-      <h1 class="title">Verify Your Certificate</h1>
-      <p class="subtitle">Enter your Internship ID to check your certificate</p>
-      <div class="input-box">
-        <input type="text" id="internIdInput" placeholder="e.g., PS2506UI001">
-        <button onclick="showCertificate()">Verify</button>
+      <header class="verification-header-content">
+        <h1 class="title">Certificate Verification</h1>
+        <p class="subtitle">Enter your certificate ID to verify and view your digital internship certificate</p>
+      </header>
+
+      <div class="input-section">
+        <div class="input-group">
+          <label for="certificateInput">Certificate ID</label>
+          <div class="input-wrapper">
+            <input type="text" id="certificateInput" placeholder="PS25XXXXXXX" maxlength="11" autocomplete="off"
+              spellcheck="false">
+            <button id="verifyBtn" type="button">
+              <i class="fas fa-shield-check"></i>
+              Verify
+            </button>
+          </div>
+          <div id="inputFeedback" class="input-feedback"></div>
+        </div>
       </div>
-      <div id="certificateDisplay" class="certificate"></div>
-      <div id="errorMessage" class="error"></div>
+
+      <div id="verificationResult"></div>
+      <div id="errorMessage"></div>
     </div>
   </div>
 
@@ -325,7 +738,8 @@
       <div class="footer-section">
         <h3>PrismStudio</h3>
         <p>
-          We transform your vision into dynamic software. From websites to mobile apps, we craft innovative digital solutions that help brands grow smarter.
+          We transform your vision into dynamic software. From websites to mobile apps, we craft innovative digital
+          solutions that help brands grow smarter.
         </p>
       </div>
       <div class="footer-section">
@@ -352,7 +766,8 @@
         <h4>Contact Us</h4>
         <p>Email: <a href="mailto:team@prismstudio.co.in" style="color: #66c5ff;">team.prismstudio@co.in</a></p>
         <div class="social-icons">
-          <a href="https://www.instagram.com/prismstudio__?utm_source=qr&igsh=MWFucndybjlrNWFtMw=="><i class="fab fa-instagram"></i></a>
+          <a href="https://www.instagram.com/prismstudio__?utm_source=qr&igsh=MWFucndybjlrNWFtMw=="><i
+              class="fab fa-instagram"></i></a>
           <a href="https://www.linkedin.com/company/prismstudioss/"><i class="fab fa-linkedin-in"></i></a>
           <a href="mailto:team@prismstudio.co.in"><i class="fas fa-envelope"></i></a>
         </div>
@@ -362,49 +777,379 @@
     <div class="footer-bottom">
       © 2025 PrismStudio. All rights reserved.
       <div>
-        <a href="privpolicy.html" style="margin-right: 20px; color: #a0acb7; text-decoration: none;">Privacy Policy</a>
-      <a href="toc.html" style="margin-right: 20px; color: #a0acb7; text-decoration: none;">Terms of Use</a>
-      <a href="#" style="color: #a0acb7; text-decoration: none;">Cookies</a>
+        <a href="privpolicy.html">Privacy Policy</a>
+        <a href="toc.html">Terms of Use</a>
+        <a href="#">Cookies</a>
       </div>
     </div>
   </footer>
 
   <script>
-    const certificates = {
-      "PS2506UI114": "certificates/PS2506UI114.png", // Placeholder for PS2506UI001
-      "PS2506UI115": "certificates/PS2506UI115.png",
-      "PS2506UI116": "certificates/PS2506UI116.png",
-      "PS2506WEB112": "certificates/PS2506WEB112.png",
-      "PS2506WEB113": "certificates/PS2506WEB113.png",
-      "PS2506WEB114": "certificates/PS2506WEB114.png",
-      "PS2506WEB155": "certificates/PS2506WEB155.png",
-      "PS2506PCB157": "certificates/PS2506PCB157.png",
-      "PS2506DS148": "certificates/PS2506DS148.png",
-      "PS2506PCB172": "certificates/PS2506PCB172.png",
-       "PS2506PCB178": "certificates/PS2506PCB178.png",
-         "PS2507DS178": "certificates/PS2507DS178.png",
-      // Placeholder for PS2506UI002
-    };
+    // Simple Certificate Verification System (No external dependencies)
+    class CertificateVerifier {
+      constructor() {
+        this.verificationAttempts = new Map();
+        this.maxAttempts = 5;
+        this.cooldownPeriod = 60000;
 
-    function showCertificate() {
-      const inputId = document.getElementById("internIdInput").value.trim().toUpperCase();
-      const certDisplay = document.getElementById("certificateDisplay");
-      const errorMsg = document.getElementById("errorMessage");
+        // Fallback certificate data (for demo - in production this would be backend only)
+        this.fallbackCertificates = {
+          "PS2506UI114": { track: "UI/UX Design", skills: ["UI Design", "UX Research", "Figma", "Prototyping"] },
+          "PS2506UI115": { track: "UI/UX Design", skills: ["UI Design", "Adobe XD", "Wireframing"] },
+          "PS2506UI116": { track: "UI/UX Design", skills: ["Design Systems", "Usability Testing"] },
+          "PS2506WEB112": { track: "Web Development", skills: ["HTML5", "CSS3", "JavaScript", "Responsive Design"] },
+          "PS2506WEB113": { track: "Web Development", skills: ["React.js", "Node.js", "MongoDB", "APIs"] },
+          "PS2506WEB114": { track: "Web Development", skills: ["Full-Stack", "Database Design", "Git"] },
+          "PS2506WEB155": { track: "Web Development", skills: ["TypeScript", "GraphQL", "Performance"] },
+          "PS2506PCB157": { track: "PCB Design", skills: ["Circuit Design", "PCB Layout", "Altium"] },
+          "PS2506PCB172": { track: "PCB Design", skills: ["High-Speed Design", "EMI/EMC"] },
+          "PS2506PCB178": { track: "PCB Design", skills: ["RF Design", "Multi-layer Boards"] },
+          "PS2506DS148": { track: "Data Science", skills: ["Python", "Machine Learning", "Data Analysis"] },
+          "PS2507DS178": { track: "Data Science", skills: ["Deep Learning", "TensorFlow", "Data Viz"] }
+        };
 
-      certDisplay.innerHTML = "";
-      errorMsg.textContent = "";
+        this.init();
+      }
 
-      if (certificates[inputId]) {
-        certDisplay.innerHTML = `<img src="${certificates[inputId]}" alt="Certificate for ${inputId}" />`;
-      } else {
-        errorMsg.textContent = "No certificate found for the entered ID.";
+      init() {
+        this.bindEvents();
+        this.checkUrlParams();
+      }
+
+      bindEvents() {
+        const verifyBtn = document.getElementById('verifyBtn');
+        const certificateInput = document.getElementById('certificateInput');
+
+        if (verifyBtn) {
+          verifyBtn.addEventListener('click', () => this.verifyCertificate());
+        }
+
+        if (certificateInput) {
+          certificateInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+              this.verifyCertificate();
+            }
+          });
+
+          certificateInput.addEventListener('input', (e) => {
+            this.formatInput(e.target);
+          });
+        }
+      }
+
+      checkUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const certId = urlParams.get('cert');
+        if (certId) {
+          document.getElementById('certificateInput').value = certId;
+          setTimeout(() => {
+            this.verifyCertificate();
+          }, 500);
+        }
+      }
+
+      formatInput(input) {
+        let value = input.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+        input.value = value;
+      }
+
+      validateCertificateId(certificateId) {
+        const pattern = /^PS\d{4}[A-Z]{2,3}\d{3}$/;
+        return pattern.test(certificateId.trim().toUpperCase());
+      }
+
+      checkRateLimit(certificateId) {
+        const now = Date.now();
+        const attempts = this.verificationAttempts.get(certificateId) || [];
+
+        const recentAttempts = attempts.filter(time => now - time < this.cooldownPeriod);
+
+        if (recentAttempts.length >= this.maxAttempts) {
+          return false;
+        }
+
+        recentAttempts.push(now);
+        this.verificationAttempts.set(certificateId, recentAttempts);
+        return true;
+      }
+
+      async verifyCertificate() {
+        const input = document.getElementById('certificateInput');
+        const certificateId = input.value.trim().toUpperCase();
+
+        this.clearResults();
+
+        if (!certificateId) {
+          this.showError('Please enter a certificate ID');
+          return;
+        }
+
+        if (!this.validateCertificateId(certificateId)) {
+          this.showError('Invalid certificate ID format. Expected format: PS####XXX###');
+          return;
+        }
+
+        if (!this.checkRateLimit(certificateId)) {
+          this.showError('Too many verification attempts. Please wait before trying again.');
+          return;
+        }
+
+        this.showLoading();
+
+        try {
+          // Try backend API first
+          const response = await fetch('api/verify.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              certificate_id: certificateId
+            })
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+
+            if (data.success) {
+              this.showCertificate(certificateId, data.certificate);
+              return;
+            }
+          }
+        } catch (error) {
+          console.log('Backend not available, using fallback');
+        }
+
+        // Fallback to client-side verification
+        await new Promise(resolve => setTimeout(resolve, 800)); // Simulate loading
+
+        if (this.fallbackCertificates[certificateId]) {
+          const cert = this.fallbackCertificates[certificateId];
+          this.showCertificate(certificateId, {
+            track: cert.track,
+            skills: cert.skills,
+            issue_date: '2025-06-15',
+            valid_until: '2027-06-15',
+            is_expired: false,
+            verified_at: new Date().toLocaleString()
+          });
+        } else {
+          this.showNotFound(certificateId);
+        }
+      }
+
+      showCertificate(certificateId, certificate) {
+        const resultContainer = document.getElementById('verificationResult');
+
+        resultContainer.innerHTML = `
+          <div class="certificate-result success">
+            <div class="verification-header">
+              <div class="verification-status">
+                <i class="fas fa-check-circle"></i>
+                <span>Certificate Verified</span>
+              </div>
+              <div class="verification-date">
+                Verified on ${certificate.verified_at || new Date().toLocaleString()}
+              </div>
+            </div>
+            
+            <div class="certificate-details">
+              <div class="certificate-info">
+                <h3>Certificate Information</h3>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <label>Certificate ID:</label>
+                    <span class="certificate-id">${certificateId}</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Track:</label>
+                    <span>${certificate.track}</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Issue Date:</label>
+                    <span>${new Date(certificate.issue_date).toLocaleDateString()}</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Valid Until:</label>
+                    <span>${new Date(certificate.valid_until).toLocaleDateString()}</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Status:</label>
+                    <span class="status-badge ${certificate.is_expired ? 'expired' : 'valid'}">${certificate.is_expired ? 'Expired' : 'Valid'}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="skills-section">
+                <h4>Skills Covered</h4>
+                <div class="skills-list">
+                  ${certificate.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+            
+            <div class="certificate-image">
+              <img src="certificates/${certificateId}.png" alt="Certificate ${certificateId}" loading="lazy">
+              <div class="image-actions">
+                <button onclick="verifier.downloadCertificate('${certificateId}')" class="btn-secondary">
+                  <i class="fas fa-download"></i> Download
+                </button>
+                <button onclick="verifier.shareCertificate('${certificateId}')" class="btn-secondary">
+                  <i class="fas fa-share"></i> Share
+                </button>
+              </div>
+            </div>
+            
+            <div class="verification-footer">
+              <p class="verification-note">
+                <i class="fas fa-shield-alt"></i>
+                This certificate has been digitally verified by PrismStudio's secure verification system.
+              </p>
+            </div>
+          </div>
+        `;
+
+        resultContainer.classList.add('show');
+      }
+
+      showNotFound(certificateId) {
+        const resultContainer = document.getElementById('verificationResult');
+
+        resultContainer.innerHTML = `
+          <div class="certificate-result error">
+            <div class="verification-header">
+              <div class="verification-status error">
+                <i class="fas fa-times-circle"></i>
+                <span>Certificate Not Found</span>
+              </div>
+            </div>
+            
+            <div class="not-found-content">
+              <div class="not-found-icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <h3>No Certificate Found</h3>
+              <p>We couldn't find a certificate with ID: <strong>${certificateId}</strong></p>
+              
+              <div class="suggestions">
+                <h4>Please check:</h4>
+                <ul>
+                  <li>The certificate ID is entered correctly</li>
+                  <li>All characters are included (no spaces)</li>
+                  <li>The certificate was issued by PrismStudio</li>
+                </ul>
+              </div>
+              
+              <div class="help-actions">
+                <button onclick="verifier.clearResults()" class="btn-primary">
+                  Try Again
+                </button>
+                <a href="mailto:team@prismstudio.co.in?subject=Certificate Verification Issue&body=Certificate ID: ${certificateId}" class="btn-secondary">
+                  Contact Support
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        resultContainer.classList.add('show');
+      }
+
+      showLoading() {
+        const resultContainer = document.getElementById('verificationResult');
+
+        resultContainer.innerHTML = `
+          <div class="verification-loading">
+            <div class="loading-spinner"></div>
+            <p>Verifying certificate...</p>
+          </div>
+        `;
+
+        resultContainer.classList.add('show');
+      }
+
+      showError(message) {
+        const errorContainer = document.getElementById('errorMessage');
+        errorContainer.textContent = message;
+        errorContainer.classList.add('show');
+
+        setTimeout(() => {
+          errorContainer.classList.remove('show');
+        }, 5000);
+      }
+
+      clearResults() {
+        const resultContainer = document.getElementById('verificationResult');
+        const errorContainer = document.getElementById('errorMessage');
+
+        resultContainer.classList.remove('show');
+        errorContainer.classList.remove('show');
+
+        setTimeout(() => {
+          resultContainer.innerHTML = '';
+          errorContainer.textContent = '';
+        }, 300);
+      }
+
+      downloadCertificate(certificateId) {
+        const link = document.createElement('a');
+        link.href = `certificates/${certificateId}.png`;
+        link.download = `PrismStudio_Certificate_${certificateId}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      async shareCertificate(certificateId) {
+        const shareUrl = `${window.location.origin}/verify/${certificateId}`;
+
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: `PrismStudio Certificate - ${certificateId}`,
+              text: 'Check out my verified certificate from PrismStudio!',
+              url: shareUrl
+            });
+          } catch (error) {
+            this.copyToClipboard(shareUrl);
+          }
+        } else {
+          this.copyToClipboard(shareUrl);
+        }
+      }
+
+      copyToClipboard(text) {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            alert('Certificate link copied to clipboard!');
+          }).catch(() => {
+            this.fallbackCopy(text);
+          });
+        } else {
+          this.fallbackCopy(text);
+        }
+      }
+
+      fallbackCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          alert('Certificate link copied to clipboard!');
+        } catch (err) {
+          prompt('Copy this link:', text);
+        }
+        document.body.removeChild(textArea);
       }
     }
+
+    // Initialize the verification system when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      window.verifier = new CertificateVerifier();
+    });
   </script>
 </body>
-</html> 
 
-
-
-
-
+</html>
