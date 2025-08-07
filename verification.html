@@ -1,408 +1,143 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PrismStudio | Certificate Verification</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Certificate Verification | PrismStudio</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
-    /* Global Reset & Box-Sizing */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif; /* Applied globally as per your original intent */
-    }
-
-    /* CSS Variables */
-    :root {
-      --primary: #18111a;
-      --accent: #3d91c9;
-      --bg: #f4f6f8;
-      --text: #1e1e1e;
-      --rounded: 20px;
-      --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    /* HTML & Body Base Styles */
-    html, body {
-      width: 100%;
-      /* height: 100%; Removed this to let flexbox manage height for min-height: 100vh */
-      overflow-x: hidden; /* Prevent horizontal scroll */
-      scroll-behavior: smooth; /* Nice touch for anchor links */
-    }
-
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh; /* Ensure body takes at least full viewport height */
-      display: flex;
-      flex-direction: column; /* Stack content and footer vertically */
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      /* Removed padding: 40px 20px; from body to allow footer to go full width */
+      background-color: #f4f6f8;
+      color: #333;
     }
 
-    /* New wrapper for main content to apply internal padding */
-    .content-wrapper {
-    flex-grow: 1; /* Allows this wrapper to take up available space, pushing footer down */
-      width: 100%;
-      max-width: 1200px; /* Optional: limit overall content width */
-      margin: 0 auto; /* Center the content wrapper */
-      padding: 40px 20px; /* Applies padding inside the wrapper */
-      display: flex; /* Use flex to center the card inside */
-      justify-content: center; /* Center horizontally */
-      align-items: flex-start; /* Align card to the top within the wrapper */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* Card Styles */
-    .card {
+    .container {
+      max-width: 1000px;
+      margin: 100px auto;
+      padding: 50px 40px;
       background: #fff;
-      padding: 50px 30px;
-      border-radius: var(--rounded);
-      box-shadow: var(--shadow);
-      max-width: 700px; /* Retain max-width for the card itself */
-      width: 100%; /* Ensure card takes full width up to max-width within its parent */
-      animation: fadeIn 0.6s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-      color: #666;
-      text-align: center; -->
-      margin-bottom: 30px;
-    }
-
-    .input-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      max-width: 400px;
-      padding: 14px 18px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      outline: none;
-      transition: 0.3s ease;
-    }
-
-    input:focus {
-      border-color: var(--accent);
-    }
-
-    button {
-      background-color: var(--primary);
-      color: #fff;
-      padding: 12px 24px;
-      border: none;
-      font-size: 1rem;
       border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    button:hover {
-      background-color: var(--accent);
-    }
-
-    .certificate {
-      margin-top: 30px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+      animation: fadeInUp 0.8s ease-out;
       text-align: center;
     }
 
-    .certificate img {
-      width: 100%;
-      max-height: 500px;
-      object-fit: contain;
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-    }
-
-    .error {
-      color: red;
-      font-weight: 600;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    /* Media Queries for Card */
-    @media (max-width: 600px) {
-      .card {
-        padding: 30px 20px;
-      }
-      .title {
-        font-size: 1.6rem;
-      }
-      input[type="text"] {
-        max-width: 100%;
-      }
-    }
-
-    /* Footer Styles - Explicitly full width and no margins/padding issue */
-    footer {
-      width: 100%; /* Very important: ensures it spans full viewport width */
-      padding: 60px 40px 25px; /* Internal padding */
-      background: linear-gradient(to right, #d43082, #1a2639);
-      color: #dce3ec;
-      font-family: 'Segoe UI', sans-serif;
-      box-sizing: border-box; /* Includes padding in the total width/height */
-      /* No need for position: absolute/fixed unless it's a sticky footer */
-    }
-
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1200px; /* Limits content width for readability on large screens */
-      margin: 0 auto; /* Centers the content within the full-width footer */
-      gap: 40px;
-    }
-
-    .footer-section {
-      flex: 1 1 200px; /* Allows sections to grow/shrink, with a minimum base width */
-    }
-
-    .footer-section h3 {
-      color: #ffa500;
-      font-size: 1.6rem;
+    h1 {
+      color: #003c52;
+      font-size: 2.8rem;
       font-weight: 700;
-      letter-spacing: 0.5px;
-      margin-top: 0;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
-    .footer-section h4 {
-      font-weight: 600;
-      color: #ffffff;
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-
-    .footer-section p {
-      margin-top: 12px;
-      line-height: 1.6;
-      font-size: 0.95rem;
-      color: #cfd9e1;
-    }
-
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 12px;
-    }
-
-    .footer-section ul li {
-      margin-bottom: 8px;
-    }
-
-    .footer-section ul li a {
-      color: #b8c3cc;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-section ul li a:hover {
-      color: #fff;
-    }
-
-    .footer-section .social-icons {
-      margin-top: 12px; /* Space for social icons below email */
-    }
-
-    .footer-section .social-icons a {
-      margin-right: 14px;
-      color: #91a3b0;
-      font-size: 1.3rem;
-      transition: color 0.3s ease;
-    }
-
-    .footer-section .social-icons a:hover {
-      color: #fff;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #2c3b4d;
-      margin: 40px 0 20px;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #a0acb7;
-    }
-
-    .footer-bottom div {
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.7;
       margin-top: 10px;
     }
 
-    .footer-bottom div a {
-      margin-right: 20px;
-      color: #a0acb7;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-bottom div a:last-child {
-        margin-right: 0; /* Remove right margin from the last link */
-    }
-
-    .footer-bottom div a:hover {
+    .btn-contact {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      background-color: #007bb6;
       color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
     }
 
-    /* Media Queries for Footer */
-    @media (max-width: 768px) {
-      .footer-inner {
-        flex-direction: column;
-        align-items: center; /* Center align columns on smaller screens */
-        text-align: center; /* Center text within sections on smaller screens */
-      }
-      .footer-section {
-        width: 100%;
-        max-width: 300px; /* Constrain width of sections for better readability on small screens */
-      }
-      .footer-section ul {
-        display: block; /* Make lists block again for proper centering */
-        text-align: center; /* Center the list items for aesthetic reasons */
-      }
-      .footer-section ul li {
-        margin-left: 0; /* Remove any left margin if set */
-        padding-left: 0; /* Remove any left padding if set */
-      }
-      .footer-section .social-icons {
-        margin-top: 20px;
-      }
+    .btn-contact:hover {
+      background-color: #00567a;
     }
 
-    @media (max-width: 480px) {
-        .content-wrapper {
-            padding: 20px 10px; /* Adjust wrapper padding on very small screens */
-        }
-        .card {
-            padding: 30px 15px;
-        }
-        footer {
-            padding: 40px 20px 15px;
-        }
+    footer {
+      background: linear-gradient(to right, #d43082, #1a2639);
+      color: #dce3ec;
+      padding: 60px 30px 25px;
+      font-family: 'Segoe UI', sans-serif;
+      margin-top: 100px;
     }
   </style>
 </head>
 <body>
-  <div class="content-wrapper">
-    <div class="card">
-      <h1 class="title">Verify Your Certificate</h1>
-      <p class="subtitle">Enter your Internship ID to check your certificate</p>
-      <div class="input-box">
-        <input type="text" id="internIdInput" placeholder="e.g., PS2506UI001">
-        <button onclick="showCertificate()">Verify</button>
-      </div>
-      <div id="certificateDisplay" class="certificate"></div>
-      <div id="errorMessage" class="error"></div>
-    </div>
+
+  <div class="container">
+    <h1>Certificate Verification</h1>
+    <p>This service will be available soon. We're working on it – promise it’s not just vibes.</p>
+    <p>If you need urgent verification, hit us up below.</p>
+    <a class="btn-contact" href="mailto:team@prismstudio.co.in">Contact Us</a>
   </div>
 
+  <!-- Footer (Same as other pages) -->
   <footer>
-    <div class="footer-inner">
-      <div class="footer-section">
-        <h3>PrismStudio</h3>
-        <p>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto; gap: 40px;">
+      <div style="flex: 1 1 260px;">
+        <h3 style="color: #ffa500; font-size: 1.6rem; font-weight: 700;">PrismStudio</h3>
+        <p style="margin-top: 12px; line-height: 1.6; font-size: 0.95rem; color: #cfd9e1;">
           We transform your vision into dynamic software. From websites to mobile apps, we craft innovative digital solutions that help brands grow smarter.
         </p>
       </div>
-      <div class="footer-section">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="internship_opportunities.html">Internships</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+      <div style="flex: 1 1 180px;">
+        <h4 style="font-weight: 600; color: #ffffff;">Navigation</h4>
+        <ul style="list-style: none; padding: 0; margin-top: 12px;">
+          <li><a href="index.html" style="color: #b8c3cc;">Home</a></li>
+          <li><a href="services.html" style="color: #b8c3cc;">Services</a></li>
+          <li><a href="index.html#about" style="color: #b8c3cc;">About</a></li>
+          <li><a href="internship_opportunities.html" style="color: #b8c3cc;">Internships</a></li>
+          <li><a href="index.html#contact" style="color: #b8c3cc;">Contact</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h4>Internship Tracks</h4>
-        <ul>
-          <li><a href="internship_opportunities.html">Frontend Development</a></li>
-          <li><a href="internship_opportunities.html">Full-Stack Engineering</a></li>
-          <li><a href="internship_opportunities.html">Mobile App Projects</a></li>
-          <li><a href="internship_opportunities.html">Java Programming</a></li>
-          <li><a href="internship_opportunities.html">UX/UI Design</a></li>
+      <div style="flex: 1 1 220px;">
+        <h4 style="font-weight: 600; color: #ffffff;">Internship Tracks</h4>
+        <ul style="list-style: none; padding: 0; margin-top: 12px;">
+          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">Frontend Development</a></li>
+          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">Full-Stack Engineering</a></li>
+          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">Mobile App Projects</a></li>
+          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">Java Programming</a></li>
+          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">UX/UI Design</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h4>Contact Us</h4>
-        <p>Email: <a href="mailto:team@prismstudio.co.in" style="color: #66c5ff;">team.prismstudio@co.in</a></p>
-        <div class="social-icons">
-          <a href="https://www.instagram.com/prismstudio__?utm_source=qr&igsh=MWFucndybjlrNWFtMw=="><i class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/company/prismstudioss/"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:team@prismstudio.co.in"><i class="fas fa-envelope"></i></a>
+      <div style="flex: 1 1 250px;">
+        <h4 style="font-weight: 600; color: #ffffff;">Contact Us</h4>
+        <p style="margin: 12px 0 6px; color: #cfd9e1;">Email: <a href="mailto:team@prismstudio.co.in" style="color: #66c5ff;">team@prismstudio.co.in</a></p>
+        <div style="margin-top: 12px; font-size: 1.3rem;">
+          <a href="#" style="margin-right: 14px; color: #91a3b0;"><i class="fab fa-instagram"></i></a>
+          <a href="#" style="margin-right: 14px; color: #91a3b0;"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:team@prismstudio.co.in" style="color: #91a3b0;"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
-    <hr>
-    <div class="footer-bottom">
+
+    <div style="text-align: center; font-size: 0.9rem; color: #a0acb7; margin-top: 20px;">
       © 2025 PrismStudio. All rights reserved.
-      <div>
-        <a href="privpolicy.html" style="margin-right: 20px; color: #a0acb7; text-decoration: none;">Privacy Policy</a>
-      <a href="toc.html" style="margin-right: 20px; color: #a0acb7; text-decoration: none;">Terms of Use</a>
-      <a href="#" style="color: #a0acb7; text-decoration: none;">Cookies</a>
+      <div style="margin-top: 10px;">
+        <a href="privacy.html" style="margin-right: 20px; color: #a0acb7;">Privacy Policy</a>
+        <a href="#" style="margin-right: 20px; color: #a0acb7;">Terms of Use</a>
+        <a href="#" style="color: #a0acb7;">Cookies</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    const certificates = {
-      "PS2506UI114": "certificates/PS2506UI114.png", // Placeholder for PS2506UI001
-      "PS2506UI115": "certificates/PS2506UI115.png",
-      "PS2506UI116": "certificates/PS2506UI116.png",
-      "PS2506WEB112": "certificates/PS2506WEB112.png",
-      "PS2506WEB113": "certificates/PS2506WEB113.png",
-      "PS2506WEB114": "certificates/PS2506WEB114.png",
-      "PS2506WEB155": "certificates/PS2506WEB155.png",
-      "PS2506PCB157": "certificates/PS2506PCB157.png",
-      "PS2506DS148": "certificates/PS2506DS148.png",
-      "PS2506PCB172": "certificates/PS2506PCB172.png",
-       "PS2506PCB178": "certificates/PS2506PCB178.png",
-         "PS2507DS178": "certificates/PS2507DS178.png",
-      // Placeholder for PS2506UI002
-    };
-
-    function showCertificate() {
-      const inputId = document.getElementById("internIdInput").value.trim().toUpperCase();
-      const certDisplay = document.getElementById("certificateDisplay");
-      const errorMsg = document.getElementById("errorMessage");
-
-      certDisplay.innerHTML = "";
-      errorMsg.textContent = "";
-
-      if (certificates[inputId]) {
-        certDisplay.innerHTML = `<img src="${certificates[inputId]}" alt="Certificate for ${inputId}" />`;
-      } else {
-        errorMsg.textContent = "No certificate found for the entered ID.";
-      }
-    }
-  </script>
 </body>
-</html> 
+</html>
 
 
 
