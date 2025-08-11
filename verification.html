@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,137 +9,120 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f6f8;
+      background: linear-gradient(135deg, #f7f9fc, #e9eef5);
       color: #333;
     }
 
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    header {
+      background: #003c52;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    header img {
+      height: 50px;
     }
 
     .container {
-      max-width: 1000px;
-      margin: 100px auto;
-      padding: 50px 40px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-      animation: fadeInUp 0.8s ease-out;
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
       text-align: center;
     }
 
-    h1 {
+    .status-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #ffc107;
+      color: #222;
+      font-weight: 600;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+
+    .main-title {
       color: #003c52;
-      font-size: 2.8rem;
+      font-size: 2.4rem;
       font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .email-highlight {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #007bb6;
       margin-bottom: 20px;
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #555;
-      line-height: 1.7;
+      line-height: 1.6;
       margin-top: 10px;
     }
 
     .btn-contact {
       display: inline-block;
       margin-top: 25px;
-      padding: 12px 25px;
+      padding: 14px 28px;
       font-size: 1rem;
       background-color: #007bb6;
       color: #fff;
-      border: none;
       border-radius: 6px;
-      cursor: pointer;
       text-decoration: none;
       transition: background-color 0.3s ease;
     }
-
     .btn-contact:hover {
       background-color: #00567a;
     }
 
     footer {
-      background: linear-gradient(to right, #d43082, #1a2639);
-      color: #dce3ec;
-      padding: 60px 30px 25px;
-      font-family: 'Segoe UI', sans-serif;
-      margin-top: 100px;
+      background: #1a2639;
+      color: #cfd9e1;
+      padding: 50px 20px 25px;
+      margin-top: 80px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #b8c3cc;
+      margin: 0 10px;
     }
   </style>
 </head>
 <body>
 
+  <header>
+    <h1>PrismStudio</h1>
+    <!-- Optional: Logo -->
+    <!-- <img src="logo.png" alt="PrismStudio Logo"> -->
+  </header>
+
   <div class="container">
-    <h1>Certificate Verification</h1>
-    <p>This service will be available soon. We're working on it – promise it’s not just vibes.</p>
-    <p>If you need urgent verification, hit us up below.</p>
-    <a class="btn-contact" href="mailto:team@prismstudio.co.in">Contact Us</a>
+    <span class="status-badge">Coming Soon</span>
+    <h2 class="main-title">Certificate Verification</h2>
+    <div class="email-highlight">
+      Official Email: <a href="mailto:team@prismstudio.co.in">team@prismstudio.co.in</a>
+    </div>
+    <p>Our online verification system will be live shortly. We are currently finalizing the backend to ensure secure and instant certificate validation.</p>
+    <p>For urgent verification requests, please reach out to us directly via the official email link below.</p>
+    <a class="btn-contact" href="mailto:team@prismstudio.co.in">Contact Verification Team</a>
   </div>
 
-  <!-- Footer (Same as other pages) -->
   <footer>
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto; gap: 40px;">
-      <div style="flex: 1 1 260px;">
-        <h3 style="color: #ffa500; font-size: 1.6rem; font-weight: 700;">PrismStudio</h3>
-        <p style="margin-top: 12px; line-height: 1.6; font-size: 0.95rem; color: #cfd9e1;">
-          We transform your vision into dynamic software. From websites to mobile apps, we craft innovative digital solutions that help brands grow smarter.
-        </p>
-      </div>
-      <div style="flex: 1 1 180px;">
-        <h4 style="font-weight: 600; color: #ffffff;">Navigation</h4>
-        <ul style="list-style: none; padding: 0; margin-top: 12px;">
-          <li><a href="index.html" style="color: #b8c3cc;">Home</a></li>
-          <li><a href="services.html" style="color: #b8c3cc;">Services</a></li>
-          <li><a href="index.html#about" style="color: #b8c3cc;">About</a></li>
-          <li><a href="internship_opportunities.html" style="color: #b8c3cc;">Internships</a></li>
-          <li><a href="index.html#contact" style="color: #b8c3cc;">Contact</a></li>
-        </ul>
-      </div>
-      <div style="flex: 1 1 220px;">
-        <h4 style="font-weight: 600; color: #ffffff;">Internship Tracks</h4>
-        <ul style="list-style: none; padding: 0; margin-top: 12px;">
-          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">Frontend Development</a></li>
-          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">Full-Stack Engineering</a></li>
-          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">Mobile App Projects</a></li>
-          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">Java Programming</a></li>
-          <li><a href="internship_opportunities.html" style="color: #cfd9e1;">UX/UI Design</a></li>
-        </ul>
-      </div>
-      <div style="flex: 1 1 250px;">
-        <h4 style="font-weight: 600; color: #ffffff;">Contact Us</h4>
-        <p style="margin: 12px 0 6px; color: #cfd9e1;">Email: <a href="mailto:team@prismstudio.co.in" style="color: #66c5ff;">team@prismstudio.co.in</a></p>
-        <div style="margin-top: 12px; font-size: 1.3rem;">
-          <a href="#" style="margin-right: 14px; color: #91a3b0;"><i class="fab fa-instagram"></i></a>
-          <a href="#" style="margin-right: 14px; color: #91a3b0;"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:hrdesk.interns@prismstudio.co.in" style="color: #91a3b0;"><i class="fas fa-envelope"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align: center; font-size: 0.9rem; color: #a0acb7; margin-top: 20px;">
-      © 2025 PrismStudio. All rights reserved.
-      <div style="margin-top: 10px;">
-        <a href="privacy.html" style="margin-right: 20px; color: #a0acb7;">Privacy Policy</a>
-        <a href="#" style="margin-right: 20px; color: #a0acb7;">Terms of Use</a>
-        <a href="#" style="color: #a0acb7;">Cookies</a>
-      </div>
-    </div>
+    © 2025 PrismStudio — All Rights Reserved | <a href="privacy.html">Privacy Policy</a> | <a href="#">Terms</a>
   </footer>
 
 </body>
 </html>
-
-
-
-
-
-
